@@ -22,11 +22,10 @@
             var year = document.getElementById("year").value;
 
             var Cs = year - 543;
-
-            if ((Cs % 100 != 0) && (Cs % 4 == 0)){
-                document.getElementById("Lp").innerText = "ปี : " +year+ " เป็นปีอธิกสุรทิน (No Leap Year)";
+            if ((Cs % 400 == 0 ) || (Cs % 100 != 0) && (Cs % 4 == 0)){
+                document.getElementById("Lp").innerText = "ปี : " +year+ " เป็นปีอธิกสุรทิน (Leap Year)";
             }else{
-                document.getElementById("Lp").innerText = "ปี : " +year+ " ไม่เป็นปีอธิกสุรทิน (Leap Year)";
+                document.getElementById("Lp").innerText = "ปี : " +year+ " ไม่เป็นปีอธิกสุรทิน (No Leap Year)";
             }
         }   
     </script>

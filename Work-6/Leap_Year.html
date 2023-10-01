@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณปีอธิกสุรทิน(Leap Year)</title>
+</head>
+<body>
+    <h2 >โปรแกรมคำนวณปีอธิกสุรทิน(Leap Year)</h2>
+        <td>จงป้อนปี พศ. >></td>
+        <td>
+            <input type="number" name="year" id="year" placeholder="โปรดระบุ ปีพศ.">
+        </td>
+        <td>
+            <input type="submit" value="ค้นหา" onClick="find_leapyear()" />
+        </td>
+        <br><br>
+        <div id="Lp"></div>
+
+    <script>
+        function find_leapyear(){
+            var year = document.getElementById("year").value;
+
+            var Cs = year - 543;
+
+            if ((Cs % 100 != 0) && (Cs % 4 == 0)){
+                document.getElementById("Lp").innerText = "ปี : " +year+ " เป็นปีอธิกสุรทิน (No Leap Year)";
+            }else{
+                document.getElementById("Lp").innerText = "ปี : " +year+ " ไม่เป็นปีอธิกสุรทิน (No Leap Year)";
+            }
+        }   
+    </script>
+    
+</body>
+</html>

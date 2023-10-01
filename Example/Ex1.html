@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณค่างวดผ่อนรถยนต์</title>
+</head>
+<body>
+    <h1 align="center">โปรแกรมคำนวณค่างวดผ่อนรถยนต์</h1>
+    <table cellspacing="2" align="center" cellpadding="8" border="0">
+        <tr>
+            <td>ราคารถยนต์ (บาท)</td>
+            <td><input type="number" name="cp" id="cp1" placeholder="โปรดระบุ"></td>
+        </tr>
+        <tr>
+            <td>จำนวนเงินดาวน์ (%)</td>
+            <td><input type="number" id="d1" placeholder="โปรดระบุ"></td>
+        </tr>
+        <tr>
+            <td>จำนวนปีที่จะผ่อน</td>
+            <td><select name="" id="y1">
+                <option value="1">12 งวด (1 ปี)</option>
+                <option value="2">24 งวด (2 ปี)</option>
+                <option value="3">36 งวด (3 ปี)</option>
+                <option value="4">48 งวด (4 ปี)</option>
+                <option value="5">60 งวด (5 ปี)</option>
+                <option value="6">72 งวด (6 ปี)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>ดอกเบี้ย % ต่อปี</td>
+            <td><input type="number" id="int1" placeholder="โปรดระบุ"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="Calculate" onclick="car_payments()"></td>
+        </tr>
+        <tr>
+            <td>เงินดาวน์ (บาท)</td>
+            <td id="d2"></td>
+        </tr>
+        <tr>
+            <td>ยอดจัดไฟแนนซ์ (บาท)</td>
+            <td id="cp2"></td>
+        </tr>
+        <tr>
+            <td>ดอกเบี้ย (บาท)</td>
+            <td id="int2"></td>
+        </tr>
+        <tr>
+            <td>ค่างวดต่อเดือน (บาท)</td>
+            <td id="mo"></td>
+        </tr>
+    </table>
+   
+    <script>
+        function car_payments(){
+            var Carprice = document.getElementById('cp1').value;
+            var down = document.getElementById('d1').value;
+            var year = document.getElementById('y1').value;
+            var interest = document.getElementById('int1').value;
+
+
+            var down2 = Carprice * (down/100);  // คำนวณเงินดาว์น
+            var Carprice2 = Carprice - down2;  // คำนวณหาเงินต้น
+            var interest2 = Carprice2 - (interest/100) *year;  // คำนวณหาดอกเบี้ย
+            var mount = (Carprice2 + interest2) / (year*12);  // คำนวณค่างวดต่อเดือน
+
+
+            document.getElementById('d2').innerText = down2;
+            document.getElementById('cp2').innerText = Carprice2;
+            document.getElementById('int2').innerText = interest2;
+            document.getElementById('mo').innerText = mount;
+
+
+           
+        }
+    </script>
+   
+</body>
+</html>

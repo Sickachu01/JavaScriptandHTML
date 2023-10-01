@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerHTML Example</title>
+</head>
+<body>
+    <h1>innerHTML Example</h1>
+    <form name="myForm">  
+        <input type="button" value="comment" onclick="commentform()">  
+        <div id="mylocation"></div>  
+        <div id="myoutput"></div>
+    </form>
+
+
+    <script>  
+        var flag=true;  
+        function commentform(){  
+            var cform="<form action='Comment'>Enter Name:<br><input type='text' name='name'/><br/> Enter Email:<br> <input type='email' name='email'/><br>Enter Comment:<br/> <textarea name='comment' rows='5' cols='70'></textarea><br><input type='button' value='Post Comment' onclick='showcomment()'/></form>";  
+            if(flag){  
+                document.getElementById("mylocation").innerHTML=cform;  
+                flag=false;  
+            }else{  
+                document.getElementById("mylocation").innerHTML="";  
+                flag=true;  
+            }  
+        }
+       
+        function showcomment(){
+          var name = document.myForm.name.value;
+          var email = document.myForm.email.value;
+          var comment = document.myForm.comment.value;
+
+
+          var output =
+          "<h3>Output</h3>" +
+          "Name: " +name+ "<br>" +
+          "Email: " +email+ "<br>" +
+          "Comment: " +comment+ "<br>";
+
+
+          document.getElementById("myoutput").innerHTML=output;
+
+
+        }
+    </script>
+   
+</body>
+</html>

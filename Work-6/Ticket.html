@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมค่าเข้าชมนิทรรศการ</title>
+</head>
+<body>
+    <h2>โปรแกรมค่าเข้าชมนิทรรศการ</h2>
+    <table >
+        <tr>
+            <td>จำนวนเพศชาย >></td>
+            <td>
+                <input type="number" name="boy" id="boy" placeholder="ระบุจำนวน">
+            </td>
+        </tr>
+        <tr>
+            <td>จำนวนเพศหญิง >></td>
+            <td>
+                <input type="number" name="girl" id="girl" placeholder="ระบุจำนวน">
+            </td>
+        </tr>
+        <td>
+            <input type="submit" value="คำนวน" onClick="find_price()" />
+        </td>
+    </table>
+    <div id="by"></div>
+    <div id="gl"></div>
+    <div id="cn"></div>
+    <div id="price"></div>
+    <div id="allprice"></div>
+
+    <script>
+        function find_price(){
+            var boy = parseInt(document.getElementById("boy").value);
+            var girl = parseInt(document.getElementById("girl").value);
+
+            var p_boy = boy * 200;
+            var p_girl = girl * 100;
+
+            var count = boy + girl;
+            var allPrice = p_boy+p_girl;
+
+            if(count > 10){
+                var discount = allPrice * 0.1;
+                var allPrice2 = allPrice - discount;
+                document.getElementById("cn").innerText = `จำนวนคนเข้าชมนิทรรศการ = ${count} คน ได้รับส่วนลด 10%`;  
+                document.getElementById("price").innerText = `จำนวนเงินรวม ${allPrice} บาท ส่วนลด 10% = ${discount} บาท`;
+            }else {
+                var allPrice2 = allPrice
+                document.getElementById("cn").innerText = `จำนวนคนเข้าชมนิทรรศการ = ${count} คน ไม่ได้รับส่วนลด 10%`;  
+                document.getElementById("price").innerText = `จำนวนเงินรวม ${allPrice} บาท ส่วนลด 10% = 0 บาท`;
+            }
+
+            document.getElementById("by").innerText = `ค่าเข้าชมเพศชาย ${boy} คนละ 200 บาท = ${p_boy} บาท`;
+            document.getElementById("gl").innerText = `ค่าเข้าชมเพศหญิง ${girl} คนละ 100 บาท = ${p_girl} บาท`;         
+            document.getElementById("allprice").innerText = `ค่าเข้าชมนิทรรศการ = ${allPrice2} บาท`;
+        }
+    </script>
+</body>
+</html>

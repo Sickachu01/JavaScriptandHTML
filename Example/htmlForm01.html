@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <title>SignUp Page</title>
+  </head>
+  <body align="center">
+    <h1>โปรแกรมคำนวณค่างวดรถ</h1>
+    <table cellspacing="2" align="center" cellpadding="8" border="0">
+      <tr>
+        <td>ราคารถยนต์ (บาท)</td>
+        <td><input type="number" placeholder="ราคารถยนต์ (บาท)" id="cp1" /></td>
+      </tr>
+      <tr>
+        <td>จำนวนเงินดาวน์ (%)</td>
+        <td>
+          <input type="number" placeholder="จำนวนเงินดาวน์ (%)" id="d1" />
+        </td>
+      </tr>
+      <tr>
+        <td>จำนวนปีที่จะผ่อน</td>
+        <td>
+          <select id="y1">
+            <option value="1">12 งวด (1 ปี)</option>
+            <option value="2">24 งวด (2 ปี)</option>
+            <option value="3">36 งวด (3 ปี)</option>
+            <option value="4">48 งวด (4 ปี)</option>
+            <option value="6">60 งวด (5 ปี)</option>
+            <option value="7">72 งวด (6 ปี)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>ดอกเบี้ย % ต่อปี</td>
+        <td><input type="number" placeholder="% ต่อปี" id="int1" /></td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Calculate" onClick="car_payments()" />
+        </td>
+      </tr>
+    </table>
+    <h3>ผลลัพธ์</h3>
+    <table cellspacing="2" align="center" cellpadding="8" border="0">
+      <tr>
+        <td>เงินดาวน์ (บาท)</td>
+        <td id="d2"></td>
+      </tr>
+      <tr>
+        <td>ยอดจัดไฟแนนซ์</td>
+        <td id="cp2"></td>
+      </tr>
+      <tr>
+        <td>ดอกเบี้ย</td>
+        <td id="int2"></td>
+      </tr>
+      <tr>
+        <td>ค่างวดต่อเดือน</td>
+        <td id="mo"></td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      function car_payments() {
+        var cp = document.getElementById("cp1").value;
+        var d = document.getElementById("d1").value;
+        var y = document.getElementById("y1").value;
+        var int = document.getElementById("int1").value;
+        //Code for password validation
+        var letters = /^[A-Za-z]+$/;
+        var email_val =
+          /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var n = /^[+-]?((\.\d+)|(\d+(\.\d+)?))$/;
+        //other validations required code
+        if (cp == "" || d == "" || y == "" || int == "") {
+          alert("ป้อนทุกค่าให้ถถูกต้อง");
+        } else if (!n.test(int)) {
+          alert("ดอกเบี้ยต้องเป็นตัวเลขทศนิยม");
+        } else if (d < 10) {
+          alert("เงินดาวน์ต้องไม่น้อยกว่า 10%");
+        }
+        // } else if (!Number.isInteger(cp)) {
+        //     document.write(cp);
+        //   alert("ราคารถยนต์ต้องเป็นจำนวนเต็ม");
+        // }
+        else {
+          var d2 = cp * (d / 100); //คำนวณจำนวนเงินดาวน์
+          var cp2 = cp - d2; //คำนวณเงินต้น
+          var int2 = cp2 * (int / 100) * y;
+          var mo = (cp2 + int2) / (y * 12);
+          document.getElementById("d2").innerText = d2;
+          document.getElementById("cp2").innerText = cp2;
+          document.getElementById("int2").innerText = int2;
+          document.getElementById("mo").innerText = mo;
+        }
+      } //end car_payments
+    </script>
+  </body>
+</html>

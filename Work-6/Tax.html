@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณภาษีเงินได้บุคคลธรรมดา</title>
+</head>
+<body>
+    <h2>โปรแกรมคำนวณภาษีเงินได้บุคคลธรรมดา</h2>
+    <td>เงินเดือน >></td>
+    <td>
+        <input type="number" name="money" id="mn" placeholder="โปรดกรอกเงินเดือน">
+    </td>
+    <td>
+        <input type="submit" value="คำนวน" onClick="find_tax()" />
+    </td>
+    <br><br>
+    <div id="deduction"></div>
+    <div id="tax"></div>
+    <div id="taxm"></div>
+
+    <script>
+        function find_tax(){
+            var money = document.getElementById("mn").value;
+
+            var money2 = money * 12; // หาเงินได้สุทธิ
+            var expend = money2 * 0.4; // ไว้สำหรับหักค่าใช้จ่าย 40%
+
+            if(expend > 60000){ // หักค่าใช้จ่าย 40% แต่ไม่เกิน 60000 
+                expend = 60000;
+            }
+            var money3 = money2 - expend; // หักค่าใช้จ่าย 40%
+            var money4 = money3 - 30000; // หักค่าลดหย่อย 30000 บาท
+
+            if((money4 >= 0)&&(money4 <= 150000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = ยกเงิน" ;
+                var tax = money4 * 0;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 150000)&&(money4 <= 300000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 5 %" ;
+                var tax = money4 * 0.05;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 300000)&&(money4 <= 500000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 10 %" ;
+                var tax = money4 * 0.10;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 500000)&&(money4 <= 750000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 15 %" ;
+                var tax = money4 * 0.15;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 750000)&&(money4 <= 1000000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 20 %" ;
+                var tax = money4 * 0.20;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 1000000)&&(money4 <= 2000000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 25 %" ;
+                var tax = money4 * 0.25;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if((money4 > 2000000)&&(money4 <= 4000000)){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 30 %" ;
+                var tax = money4 * 0.30;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }else if(money4 > 4000000){
+                document.getElementById("deduction").innerText = "จำนวนเงินหลังหักค่าลดหย่อน = " +money4;
+                document.getElementById("tax").innerText = "อัตราภาษี = 35 %" ;
+                var tax = money4 * 0.35;
+                document.getElementById("taxm").innerText = "ภาษีเงินได้ = " +tax.toFixed(2);
+            }
+            
+        }
+    </script>
+</body>
+</html>

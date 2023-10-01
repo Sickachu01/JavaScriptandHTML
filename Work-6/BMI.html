@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณค่าดัชนีมวลกาย</title>
+</head>
+<body>
+    <h2>โปรแกรมคำนวณค่าดัชนีมวลกาย</h2>
+    <table >
+        <tr>
+            <td>น้ำหนักตัว >></td>
+            <td>
+                <input type="number" name="widht" id="wd" placeholder="โปรดระบุ น้ำหนักตัว">
+            </td>
+        </tr>
+        <tr>
+            <td>ส่วนสูง (cm.)>></td>
+            <td>
+                <input type="number" name="height" id="hh" placeholder="โปรดระบุ ส่วนสูง(cm.)">
+            </td>
+        </tr>
+        <td>
+            <input type="submit" value="คำนวน" onClick="find_BMI()" />
+        </td>
+    </table>
+        <br>
+        <div id="width"></div>
+        <div id="height"></div>
+        <div id="bmi"></div>
+        <div id="size"></div>
+    <script>
+        function find_BMI(){
+            var width = document.getElementById("wd").value;
+            var height = document.getElementById("hh").value;
+
+            var BMI = width/((height/100) **2);
+            if(BMI >= 40){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = อ้วนขั้นสุด";
+            }else if(BMI >= 35){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = อ้วนขั้นที่ 2";
+            }else if(BMI >= 28.5){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = อ้วนขั้นที่ 1";
+            }else if(BMI >= 23.5){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = น้ำหนักเกิน";
+            }else if(BMI >= 18.5){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = อยู่ในเกณฑ์ปกติ";
+            }else if(BMI < 18.5){
+                document.getElementById("width").innerText = "น้ำหนักตัว >> "+width;
+                document.getElementById("height").innerText = "ส่วนสูง (cm.) >> "+height;
+                document.getElementById("bmi").innerText = "BMI : " +BMI.toFixed(2);
+                document.getElementById("size").innerText = "รูปร่าง = น้ำหนักต่ำกว่าเกณฑ์";
+            }
+        }
+    </script>
+</body>
+</html>

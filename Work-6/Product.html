@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมค่าสินค้า</title>
+</head>
+<body>
+    <h2>โปรแกรมค่าสินค้า</h2>
+    <form id="productForm">
+        <td>จำนวนรายการสินค้า >></td>
+        <td>
+            <input type="number" name="list" id="li" onchange="product()" placeholder="โปรดกรอกรายการสินค้า">
+        </td>
+        <div id="productInputs"></div>
+        <input type="button" value="ตกลง" onclick="calculateTotal()"/>
+    </form>
+
+    <div id="discountResult" style="display: none;">
+        <h3>ผลลัพธ์:</h3>
+        <div id="products"></div>
+        <div id="total"></div>
+        <div id="discount"></div>
+        <div id="mn"></div>
+    </div>
+
+    <script>
+        function product(){
+            var numberOfItems = document.getElementById("li").value;
+            var productInputs = document.getElementById("productInputs");
+            productInputs.innerHTML = "";
+
+            for (var i = 1; i <= numberOfItems; i++) {
+                var productInput = `
+                    <br>
+                    <td for="productName${i}">ชื่อสินค้าที่ #${i}:</td>
+                    <input type="text" name="productName${i}" id="productName${i}">
+                    <br>
+                    <td for="productPrice${i}">ราคา:</td>
+                    <input type="number" name="productPrice${i}" id="productPrice${i}">
+                    <br>
+                    <td for="productQuantity${i}">จำนวน:</td>
+                    <input type="number" name="productQuantity${i}" id="productQuantity${i}">
+                    <br>
+                `;
+                productInputs.innerHTML += productInput;
+            }
+        }
+
+        function calculateTotal() {
+            var numberOfItems = document.getElementById("li").value;
+            var products = document.getElementById("products");
+            products.innerHTML = "";
+
+            var totalCost = 0;
+            for (var i = 1; i <= numberOfItems; i++) {
+                var productName = document.getElementById("productName" + i).value;
+                var productPrice = parseFloat(document.getElementById("productPrice" + i).value);
+                var productQuantity = parseInt(document.getElementById("productQuantity" + i).value);
+                var itemTotal = productPrice * productQuantity;
+                totalCost += itemTotal;
+
+                var productInput = `
+                    <div>สินค้าที่ #${i}: ${productName} ราคา ${productPrice} บาท จำนวน ${productQuantity} เครื่อง = ${itemTotal}</div>
+                `;
+                products.innerHTML += productInput;
+            }
+
+            if (totalCost <= 10000) {
+                var discount = 0.03;
+            } else if (totalCost <= 100000) {
+                var discount = 0.05;
+            } else {
+                var discount = 0.1;
+            }
+
+            var discountAmount = totalCost * discount;
+            var netTotal = totalCost - discountAmount;
+
+
+            // แสดงผลลัพธ์ใน HTML
+            document.getElementById("total").textContent = "รวมเป็นเงิน = "+totalCost;
+            document.getElementById("discount").textContent = "ส่วนลด "+(discount * 100) + "%";
+            document.getElementById("mn").textContent = `จำนวนเงิน สุทธิ ${totalCost} - ${discountAmount} = ${netTotal.toFixed(2)} บาท`;
+            document.getElementById("discountResult").style.display = "block";
+        }
+
+    </script>
+</body>
+</html>

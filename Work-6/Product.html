@@ -55,8 +55,8 @@
             var totalCost = 0;
             for (var i = 1; i <= numberOfItems; i++) {
                 var productName = document.getElementById("productName" + i).value;
-                var productPrice = parseFloat(document.getElementById("productPrice" + i).value);
-                var productQuantity = parseInt(document.getElementById("productQuantity" + i).value);
+                var productPrice = document.getElementById("productPrice" + i).value;
+                var productQuantity = document.getElementById("productQuantity" + i).value;
                 var itemTotal = productPrice * productQuantity;
                 totalCost += itemTotal;
 
@@ -68,7 +68,7 @@
 
             if (totalCost <= 10000) {
                 var discount = 0.03;
-            } else if (totalCost <= 100000) {
+            } else if (totalCost > 10000 && totalCost <= 100000) {
                 var discount = 0.05;
             } else {
                 var discount = 0.1;
@@ -80,7 +80,7 @@
 
             // แสดงผลลัพธ์ใน HTML
             document.getElementById("total").textContent = "รวมเป็นเงิน = "+totalCost;
-            document.getElementById("discount").textContent = "ส่วนลด "+(discount * 100) + "%";
+            document.getElementById("discount").textContent = `ส่วนลด ${discount * 100}% : ${totalCost} = ${discountAmount} บาท` ;
             document.getElementById("mn").textContent = `จำนวนเงิน สุทธิ ${totalCost} - ${discountAmount} = ${netTotal.toFixed(2)} บาท`;
             document.getElementById("discountResult").style.display = "block";
         }
